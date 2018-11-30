@@ -6,7 +6,8 @@ components:
 - users
 - works
 - solutions
-- adding, editing, deleting each item
+- user group
+- adding, displaying, editing, deleting each element
 
 Technologies:
 - Java
@@ -20,7 +21,8 @@ Elementy:
 - użytkownicy
 - zadania
 - rozwiązania
-- dodawania, edycji, usunięcia każdego elementu
+- grupy użytkowników
+- dodawania, wyświetlania, edycji, usunięcia każdego elementu
 
 Technologie:
 - Java
