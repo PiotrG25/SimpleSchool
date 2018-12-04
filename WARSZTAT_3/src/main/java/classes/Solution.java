@@ -5,8 +5,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
@@ -56,6 +54,52 @@ public class Solution {
 
         return "0";
     }
+
+    public static Solution loadSolutionById(Connection conn, int id) throws SQLException {
+        String select = "SELECT * FROM solution WHERE id = ?;";
+        PreparedStatement selectPreparedStatement = conn.prepareStatement(select);
+        selectPreparedStatement.setInt(1, id);
+        ResultSet rs = selectPreparedStatement.executeQuery();
+
+        if (rs.next()) {
+            LocalDateTime created = LocalDateTime.from(rs.getDate("created").toInstant());
+            LocalDateTime updated = LocalDateTime.from(rs.getDate("updated").toInstant());
+            String description = rs.getString("description");
+            int exercise_id = rs.getInt("exercise_id");
+            int users_id = rs.getInt("users_id");
+
+            Solution solution = new Solution(created, updated, description, exercise_id, users_id);
+            solution.id = id;
+            rs.close();
+            return solution;
+        }
+        rs.close();
+        return null;
+    }
+
+    public static List<Solution> loadAllSolutions(Connection conn) throws SQLException {
+        String select = "SELECT id FROM solution;";
+        ResultSet rs = (conn.createStatement()).executeQuery(select);
+        List<Solution> solutions = new ArrayList<>();
+
+        while(rs.next()){
+            solutions.add(loadSolutionById(conn, rs.getInt("id")));
+        }
+        rs.close();
+
+        return solutions;
+    }
+
+    public void delete(Connection conn) throws SQLException {
+        if(id != 0){
+            String delete = "DELETE FROM solution WHERE id = ?";
+            PreparedStatement pstm = conn.prepareStatement(delete);
+            pstm.setInt(1, id);
+            pstm.executeUpdate();
+            id = 0;
+        }
+    }
+
 
     private boolean isExercise(Connection conn)throws SQLException{
         Statement stm = conn.createStatement();
@@ -111,63 +155,60 @@ public class Solution {
         return updatePreparedStatement;
     }
 
-    public static Solution loadSolutionById(Connection conn, int id) throws SQLException {
-        String select = "SELECT * FROM solution WHERE id = ?;";
-        PreparedStatement selectPreparedStatement = conn.prepareStatement(select);
-        selectPreparedStatement.setInt(1, id);
-        ResultSet rs = selectPreparedStatement.executeQuery();
 
-        if (rs.next()) {
-            LocalDateTime created = LocalDateTime.from(rs.getDate("created").toInstant());
-            LocalDateTime updated = LocalDateTime.from(rs.getDate("updated").toInstant());
-            String description = rs.getString("description");
-            int exercise_id = rs.getInt("exercise_id");
-            int users_id = rs.getInt("users_id");
-
-            Solution solution = new Solution(created, updated, description, exercise_id, users_id);
-            solution.id = id;
-            rs.close();
-            return solution;
-        }
-        rs.close();
-        return null;
+    public int getId() {
+        return id;
     }
 
-    public static List<Solution> loadAllSolutions(Connection conn) throws SQLException {
-        String select = "SELECT id FROM solution;";
-        ResultSet rs = (conn.createStatement()).executeQuery(select);
-        List<Solution> solutions = new ArrayList<>();
-
-        while(rs.next()){
-            solutions.add(loadSolutionById(conn, rs.getInt("id")));
-        }
-        rs.close();
-
-        return solutions;
-    }
-    
-    public void delete(Connection conn) throws SQLException {
-        if(id != 0){
-            String delete = "DELETE FROM solution WHERE id=?";
-            PreparedStatement pstm = conn.prepareStatement(delete);
-            pstm.setInt(1, id);
-            pstm.executeUpdate();
-            id = 0;
-        }
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public static Solution loadAllByUserId(Connection conn, int id) throws SQLException {
-//        todo: pobranie wszystkich rozwiazan uzytkownika
-//        todo:
-        return null;
+    public LocalDateTime getCreated() {
+        return created;
     }
 
-    public static Solution[] loadAllByExerciseId(Connection conn, int id) throws SQLException {
-//        todo: pobranie wszystkich rozwiazan danego zadania
-//        todo:posortowane od najnowszego do najstarszego
-//        todo:
-        return null;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
 
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getExerciseId() {
+        return exerciseId;
+    }
+
+    public void setExerciseId(int exerciseId) {
+        this.exerciseId = exerciseId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public static DateFormat getDateFormat() {
+        return dateFormat;
+    }
+
+    public static void setDateFormat(DateFormat dateFormat) {
+        Solution.dateFormat = dateFormat;
+    }
 }
