@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "exercise", urlPatterns = "/exercise")
 public class exercise extends HttpServlet {
@@ -67,7 +68,7 @@ public class exercise extends HttpServlet {
         try(
                 Connection conn = DbUtil.getConn();
         ){
-            Exercise[] exercises = Exercise.loadAllExercises(conn);
+            List<Exercise> exercises = Exercise.loadAllExercises(conn);
             request.setCharacterEncoding("utf-8");
             response.setCharacterEncoding("utf-8");
             request.setAttribute("exercises", exercises);

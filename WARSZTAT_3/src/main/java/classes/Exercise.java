@@ -1,7 +1,9 @@
 package classes;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
@@ -43,11 +45,13 @@ public class Exercise {
         }
         return "0";
     }
+
     public static Exercise loadExerciseById(Connection conn, int id) throws SQLException {
+
         String select = "SELECT * FROM exercise WHERE id=?;";
-        PreparedStatement pstm = conn.prepareStatement(select);
-        pstm.setInt(1, id);
-        ResultSet rs = pstm.executeQuery();
+        PreparedStatement selectPreparedStatement = conn.prepareStatement(select);
+        selectPreparedStatement.setInt(1, id);
+        ResultSet rs = selectPreparedStatement.executeQuery();
 
         if(rs.next()){
             String title = rs.getString("title");
@@ -59,27 +63,20 @@ public class Exercise {
             return exercise;
         }
         rs.close();
-        System.err.println("Nie ma zadania o takim id");
         return null;
     }
-    public static Exercise[] loadAllExercises(Connection conn) throws SQLException {
+
+    public static List<Exercise> loadAllExercises(Connection conn) throws SQLException {
         String selectIds = "SELECT id FROM exercise;";
         ResultSet rs = (conn.createStatement()).executeQuery(selectIds);
-        Exercise[] exercises = new Exercise[1];
+        List<Exercise> exercises = new ArrayList<>();
 
         while(rs.next()){
-            exercises[exercises.length - 1] = loadExerciseById(conn, rs.getInt("id"));
-            exercises = Arrays.copyOf(exercises, exercises.length + 1);
+            exercises.add(loadExerciseById(conn, rs.getInt("id")));
         }
         rs.close();
-        exercises = Arrays.copyOf(exercises, exercises.length - 1);
 
-        if(exercises.length == 0){
-            System.out.println("Brak zadan");
-            return null;
-        }else{
-            return exercises;
-        }
+        return exercises;
     }
 
     public void delete(Connection conn) throws SQLException {
@@ -92,22 +89,24 @@ public class Exercise {
         }
     }
 
-    public Exercise setTitle(String title){
-        this.title = title;
-        return this;
-    }
-    public Exercise setDescription(String description){
-        this.description = description;
-        return this;
-    }
-
-    public int getId(){
+    public int getId() {
         return id;
     }
-    public String getTitle(){
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
         return title;
     }
-    public String getDescription(){
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
         return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
