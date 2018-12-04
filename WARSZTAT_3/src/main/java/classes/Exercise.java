@@ -17,19 +17,9 @@ public class Exercise {
 
     public String saveToDB(Connection conn) throws SQLException {
 
-        if(title == null){
-            System.err.println("brakuje tytulu");
-            return "title";
-        }
-        if(description == null){
-            System.err.println("brakuje opisu");
-            return "description";
-        }
-
         if(id == 0){
             String insert = "INSERT INTO exercise (title, description) VALUES (?, ?);";
             PreparedStatement pstm = conn.prepareStatement(insert, RETURN_GENERATED_KEYS);
-
             pstm.setString(1, title);
             pstm.setString(2, description);
 
@@ -37,31 +27,17 @@ public class Exercise {
             ResultSet rs = pstm.getGeneratedKeys();
             rs.next();
             id = rs.getInt(1);
+
             rs.close();
         }else{
-            String select = "SELECT * FROM exercise WHERE id=?;";
-            PreparedStatement selectStatement = conn.prepareStatement(select);
-            selectStatement.setInt(1, id);
-            ResultSet selectResult = selectStatement.executeQuery();
-            selectResult.next();
+            String update = "UPDATE exercise SET title = ?, description = ? WHERE id = ?;";
+            PreparedStatement updatePreparedStatement = conn.prepareStatement(update);
 
-            String dbTitle = selectResult.getString("title");
-            String dbDescription = selectResult.getString("description");
+            updatePreparedStatement.setString(1, title);
+            updatePreparedStatement.setString(2, description);
+            updatePreparedStatement.setInt(3, id);
 
-            if(!title.equals(dbTitle)){
-                String update = "UPDATE exercise SET title=? WHERE id=?;";
-                PreparedStatement updateStatement = conn.prepareStatement(update);
-                updateStatement.setInt(2, id);
-                updateStatement.setString(1, title);
-                updateStatement.executeUpdate();
-            }
-            if(!description.equals(dbDescription)){
-                String update = "UPDATE exercise SET description=? WHERE id=?;";
-                PreparedStatement updateStatement = conn.prepareStatement(update);
-                updateStatement.setInt(2, id);
-                updateStatement.setString(1, description);
-                updateStatement.executeUpdate();
-            }
+            updatePreparedStatement.executeUpdate();
         }
         return "0";
     }
