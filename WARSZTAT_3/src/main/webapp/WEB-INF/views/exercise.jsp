@@ -4,7 +4,6 @@
 <head>
     <title>exercise</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="../../css/style.css" type="text/css"/>
 </head>
 <body>
     <jsp:include page="../header.jsp"/>
@@ -55,6 +54,5 @@
             </tr>
         </c:forEach>
     </table>
-    <jsp:include page="../footer.jsp"/>
 </body>
 </html>
