@@ -2,7 +2,6 @@ package classes;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
@@ -19,7 +18,7 @@ public class Exercise {
     }
 
 
-    public String saveToDB(Connection conn) throws SQLException {
+    public void saveToDB(Connection conn) throws SQLException {
 
         if(id == 0){
             String insert = "INSERT INTO exercise (title, description) VALUES (?, ?);";
@@ -43,7 +42,6 @@ public class Exercise {
 
             updatePreparedStatement.executeUpdate();
         }
-        return "0";
     }
 
     public static Exercise loadExerciseById(Connection conn, int id) throws SQLException {
@@ -88,6 +86,7 @@ public class Exercise {
             id = 0;
         }
     }
+
 
     public int getId() {
         return id;

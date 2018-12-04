@@ -7,34 +7,63 @@
 </head>
 <body>
     <jsp:include page="../header.jsp"/>
+    <br/>
+
     <ol>
         <li>
-            Dodanie zadania
+            Dodaj zadanie
             <form action="/exercise" method="post">
-                <input type="text" name="type" value="add" style="display: none;"/>
-                Podaj dane zadania<br/>
-                <input type="text" name="title" placeholder="tytul"/><br/>
-                <input type="textarea" name="description" placeholder="opis"/><br/>
+
+                <input type="hidden" name="type" value="add"/>
+
+                <label>
+                    Tytuł:<br/>
+                    <input type="text" name="title" placeholder="tytuł"/>
+                </label><br/>
+
+                <label>
+                    Opis:<br/>
+                    <input type="text" name="description" placeholder="opis"/>
+                </label><br/>
+
                 <input type="submit" value="Dodaj"/><br/>
             </form>
         </li>
         <li>
-            Edycja użytkowników
+            Edytuj zadanie
             <form action="/exercise" method="post">
-                <input type="text" name="type" value="edit" style="display: none;"/>
-                Podaj id zadania do edycji<br/>
-                <input type="number" name="id" placeholder="id"/><br/><br/>
-                <input type="text" name="title" placeholder="tytul"/><br/>
-                <input type="textarea" name="description" placeholder="opis"/><br/>
+
+                <input type="hidden" name="type" value="edit"/>
+
+                <label>
+                    Id:<br/>
+                    <input type="number" name="id" placeholder="id"/>
+                </label><br/>
+
+                <label>
+                    Nowy tytuł:<br/>
+                    <input type="text" name="title" placeholder="Nowy tytuł"/>
+                </label><br/>
+
+                <label>
+                    Nowy opis:<br/>
+                    <input type="text" name="description" placeholder="Nowy opis"/>
+                </label><br/>
+
                 <input type="submit" value="Edytuj"/><br/>
             </form>
         </li>
         <li>
-            Usunięcie zadania
+            Usuń zadanie
             <form action="/exercise" method="post">
-                <input type="text" name="type" value="delete" style="display: none;"/>
-                Podaj id zadania do usunięcia<br/>
-                <input type="number" name="id" placeholder="id"/>
+
+                <input type="hidden" name="type" value="delete"/>
+
+                <label>
+                    Id:<br/>
+                    <input type="number" name="id" placeholder="id"/>
+                </label><br/>
+
                 <input type="submit" value="Usuń"/><br/>
             </form>
         </li>

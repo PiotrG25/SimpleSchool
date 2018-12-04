@@ -6,7 +6,7 @@
               username="root"
               password="coderslab"
               driverClassName="com.mysql.jdbc.Driver"
-              connectionProperties="useUnicode=yes;characterEncoding=utf8;useTimezone=true;serverTimezone=GMT;"
+              connectionProperties="useUnicode=yes;characterEncoding=utf8;useTimezone=true;serverTimezone=GMT;useSSL=false;"
               url="jdbc:mysql://localhost:3306/warsztat2"
               maxTotal="100"
               maxIdle="30"
