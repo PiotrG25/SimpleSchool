@@ -46,7 +46,7 @@ public class Exercise {
 
     public static Exercise loadExerciseById(Connection conn, int id) throws SQLException {
 
-        String select = "SELECT * FROM exercise WHERE id=?;";
+        String select = "SELECT * FROM exercise WHERE id = ?;";
         PreparedStatement selectPreparedStatement = conn.prepareStatement(select);
         selectPreparedStatement.setInt(1, id);
         ResultSet rs = selectPreparedStatement.executeQuery();
@@ -79,7 +79,7 @@ public class Exercise {
 
     public void delete(Connection conn) throws SQLException {
         if(id != 0){
-            String delete = "DELETE FROM exercise WHERE id=?";
+            String delete = "DELETE FROM exercise WHERE id = ?;";
             PreparedStatement pstm = conn.prepareStatement(delete);
             pstm.setInt(1, id);
             pstm.executeUpdate();

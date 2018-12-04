@@ -4,8 +4,10 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
@@ -59,7 +61,6 @@ public class Solution {
         Statement stm = conn.createStatement();
         String select = "SELECT id FROM exercise;";
         ResultSet rs = stm.executeQuery(select);
-
         while (rs.next()) {
             if (rs.getInt("id") == exerciseId) {
                 rs.close();
@@ -111,16 +112,14 @@ public class Solution {
     }
 
     public static Solution loadSolutionById(Connection conn, int id) throws SQLException {
-        String select = "SELECT * FROM solution WHERE id=?;";
-        PreparedStatement pstm = conn.prepareStatement(select);
-        pstm.setInt(1, id);
-        ResultSet rs = pstm.executeQuery();
+        String select = "SELECT * FROM solution WHERE id = ?;";
+        PreparedStatement selectPreparedStatement = conn.prepareStatement(select);
+        selectPreparedStatement.setInt(1, id);
+        ResultSet rs = selectPreparedStatement.executeQuery();
 
         if (rs.next()) {
-            Calendar created = Calendar.getInstance();
-            created.setTime(rs.getDate("created"));
-            Calendar updated = Calendar.getInstance();
-            updated.setTime(rs.getDate("updated"));
+            LocalDateTime created = LocalDateTime.from(rs.getDate("created").toInstant());
+            LocalDateTime updated = LocalDateTime.from(rs.getDate("updated").toInstant());
             String description = rs.getString("description");
             int exercise_id = rs.getInt("exercise_id");
             int users_id = rs.getInt("users_id");
@@ -131,52 +130,22 @@ public class Solution {
             return solution;
         }
         rs.close();
-        System.err.println("Brak rozwiazania o takim id");
         return null;
     }
 
-    public static Solution[] loadAllSolutions(Connection conn) throws SQLException {
+    public static List<Solution> loadAllSolutions(Connection conn) throws SQLException {
         String select = "SELECT id FROM solution;";
         ResultSet rs = (conn.createStatement()).executeQuery(select);
-        Solution[] solutions = new Solution[1];
+        List<Solution> solutions = new ArrayList<>();
 
         while(rs.next()){
-            solutions[solutions.length - 1] = loadSolutionById(conn, rs.getInt("id"));
-            solutions = Arrays.copyOf(solutions, solutions.length + 1);
+            solutions.add(loadSolutionById(conn, rs.getInt("id")));
         }
         rs.close();
-        solutions = Arrays.copyOf(solutions, solutions.length - 1);
 
-        if(solutions.length == 0){
-            System.err.println("Brak rozwiazan");
-            return null;
-        }else{
-            return solutions;
-        }
+        return solutions;
     }
-
-//    Nowosci warsztat3
-    public static Solution[] loadAllSolutions(Connection conn, int five)throws SQLException{
-        String select = "SELECT id FROM solution ORDER BY updated DESC LIMIT " + five + ";";
-        ResultSet rs = (conn.createStatement()).executeQuery(select);
-        Solution[] solutions = new Solution[1];
-
-        while(rs.next()){
-            solutions[solutions.length - 1] = loadSolutionById(conn, rs.getInt("id"));
-            solutions = Arrays.copyOf(solutions, solutions.length + 1);
-        }
-        rs.close();
-        solutions = Arrays.copyOf(solutions, solutions.length - 1);
-
-        if(solutions.length == 0){
-            System.err.println("Brak rozwiazan");
-            return null;
-        }else{
-            return solutions;
-        }
-    }
-//    Koniec nowosci
-
+    
     public void delete(Connection conn) throws SQLException {
         if(id != 0){
             String delete = "DELETE FROM solution WHERE id=?";
