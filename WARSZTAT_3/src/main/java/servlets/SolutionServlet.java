@@ -11,70 +11,36 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Calendar;
+import java.time.LocalDateTime;
+import java.util.List;
 
-@WebServlet(name = "solution", urlPatterns = "/solution")
-public class solution extends HttpServlet {
+@WebServlet(name = "SolutionServlet", urlPatterns = "/solution")
+public class SolutionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String type = request.getParameter("type");
-
         if(type == null || type.isEmpty()){
-            response.sendRedirect("/solution");
+            response.sendRedirect("/SolutionServlet");
         }
 
-        try(
-                Connection conn = DbUtil.getConn();
-        ){
+        String id = request.getParameter("id");
+        String description = request.getParameter("description");
+        String exerciseId = request.getParameter("exercise_id");
+        String userId = request.getParameter("users_id");
 
-            String id = request.getParameter("id");
-            String description = request.getParameter("description");
-            String exercise_id = request.getParameter("exercise_id");
-            String users_id = request.getParameter("users_id");
-
-            boolean doAdd = (description != null && !description.isEmpty() &&
-                    exercise_id != null && !exercise_id.isEmpty() && users_id != null && !users_id.isEmpty());
-            boolean doEdit = (id != null && !id.isEmpty());
-            boolean doDelete = (id != null && !id.isEmpty());
-
-            if(type.equals("add") && doAdd){
-                Calendar now = Calendar.getInstance();
-                Solution solution = new Solution(now, now, description, Integer.parseInt(exercise_id), Integer.parseInt(users_id));
-                solution.saveToDB(conn);
-            }else if(type.equals("edit") && doEdit){
-                Solution solution = Solution.loadSolutionById(conn, Integer.parseInt(id));
-                if(solution != null){
-                    boolean updated = false;
-                    if(description != null && !description.isEmpty()){
-                        solution.setDescription(description);
-                        updated = true;
-                    }
-                    if(exercise_id != null && !exercise_id.isEmpty()){
-                        solution.setExercise_id(Integer.parseInt(exercise_id));
-                        updated = true;
-                    }
-                    if(users_id != null && !users_id.isEmpty()){
-                        solution.setUsers_is(Integer.parseInt(users_id));
-                        updated = true;
-                    }
-                    if(updated){
-                        solution.setUpdated(Calendar.getInstance());
-                    }
-                    solution.saveToDB(conn);
-                }
-            }else if(type.equals("delete") && doDelete){
-                Solution solution = Solution.loadSolutionById(conn, Integer.parseInt(id));
-                if(solution != null){
-                    solution.delete(conn);
-                }
-            }
-
-            response.sendRedirect("/solution");
-
-        }catch(SQLException e){
-            e.printStackTrace();
+        switch(type){
+            case "add":
+                addSolution(description, exerciseId, userId);
+                break;
+            case "edit":
+                editSolution(id, description, exerciseId, userId);
+                break;
+            case "delete":
+                deleteSolution(id);
+                break;
         }
 
+        response.sendRedirect("/SolutionServlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,9 +48,75 @@ public class solution extends HttpServlet {
         try(
                 Connection conn = DbUtil.getConn();
         ){
-            Solution[] solutions = Solution.loadAllSolutions(conn);
+            List<Solution> solutions = Solution.loadAllSolutions(conn);
             request.setAttribute("solutions", solutions);
-            getServletContext().getRequestDispatcher("/WEB-INF/views/solution.jsp").forward(request, response);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        getServletContext().getRequestDispatcher("/WEB-INF/views/SolutionServlet.jsp").forward(request, response);
+    }
+
+
+    private void addSolution(String description, String exerciseId, String userId){
+
+        try(Connection conn = DbUtil.getConn();){
+
+            if(exerciseId == null || !exerciseId.matches("^[0-9]+$") || userId == null || !userId.matches("^[0-9]+$")){
+                conn.close();
+                return;
+            }
+
+            LocalDateTime now = LocalDateTime.now();
+            Solution solution = new Solution(now, now, description, Integer.parseInt(exerciseId), Integer.parseInt(userId));
+            solution.saveToDB(conn);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void editSolution(String id, String description, String exerciseId, String userId){
+
+        try(Connection conn = DbUtil.getConn();){
+
+            if(id == null || !id.matches("^[0-9]+$")) {
+                conn.close();
+                return;
+            }
+
+            Solution solution = Solution.loadSolutionById(conn, Integer.parseInt(id));
+            if(solution != null) {
+                if(description != null && !description.isEmpty()) {
+                    solution.setDescription(description);
+                }
+                if(exerciseId != null && exerciseId.matches("^[0-9]+$")){
+                    solution.setExerciseId(Integer.parseInt(exerciseId));
+                }
+                if(userId != null && userId.matches("^[0-9]+$")){
+                    solution.setUserId(Integer.parseInt(userId));
+                }
+                solution.saveToDB(conn);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private void deleteSolution(String id){
+
+        try(Connection conn = DbUtil.getConn();){
+
+            if(id == null || !id.matches("^[0-9]+$")){
+                conn.close();
+                return;
+            }
+
+            Solution solution = Solution.loadSolutionById(conn, Integer.parseInt(id));
+            if(solution != null){
+                solution.delete(conn);
+            }
+
         }catch(SQLException e){
             e.printStackTrace();
         }

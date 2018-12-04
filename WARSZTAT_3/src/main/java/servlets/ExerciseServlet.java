@@ -56,10 +56,12 @@ public class ExerciseServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/views/exercise.jsp").forward(request, response);
     }
 
+
     private void addExercise(String title, String description){
         try(Connection conn = DbUtil.getConn();){
 
             if(title == null || title.isEmpty() || description == null || description.isEmpty()){
+                conn.close();
                 return;
             }
 
@@ -101,6 +103,7 @@ public class ExerciseServlet extends HttpServlet {
         try(Connection conn = DbUtil.getConn();){
 
             if(id == null || !id.matches("^[0-9]+$")){
+                conn.close();
                 return;
             }
 
