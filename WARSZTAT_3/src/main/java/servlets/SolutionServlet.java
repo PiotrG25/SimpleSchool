@@ -25,8 +25,8 @@ public class SolutionServlet extends HttpServlet {
 
         String id = request.getParameter("id");
         String description = request.getParameter("description");
-        String exerciseId = request.getParameter("exercise_id");
-        String userId = request.getParameter("users_id");
+        String exerciseId = request.getParameter("exerciseId");
+        String userId = request.getParameter("userId");
 
         switch(type){
             case "add":

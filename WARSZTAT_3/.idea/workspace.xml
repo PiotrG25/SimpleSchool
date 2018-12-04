@@ -7,11 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d2aacc2-f5ed-4de2-b7a6-c2ada2edb6af" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Solution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ExerciseServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ExerciseServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/MainApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exercise.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exercise.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,15 +46,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3583" />
-          <entry key="jsp" value="858" />
+          <entry key="java" value="3601" />
+          <entry key="jsp" value="1168" />
           <entry key="xml" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3582" />
-          <entry key="JSP" value="858" />
+          <entry key="JAVA" value="3600" />
+          <entry key="JSP" value="1168" />
           <entry key="RegExp" value="1" />
           <entry key="XML" value="14" />
         </counts>
@@ -66,19 +64,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/servlets/ExerciseServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="80" column="29" lean-forward="true" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="221">
+              <caret line="27" column="60" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="204">
+              <caret line="69" column="23" lean-forward="true" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -135,8 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exercise.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="55" column="12" lean-forward="true" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+            <state relative-caret-position="170">
+              <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -168,7 +160,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/users.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user_group.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tableChoice.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/servlets/exercise.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/header.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/addServlets/AddExerciseServlet.java" />
@@ -176,12 +167,13 @@
         <option value="$PROJECT_DIR$/src/main/java/AddServlets/AddExerciseServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/EditServlets/EditExerciseServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/DeleteServlets/DeleteExerciseServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exercise.jsp" />
         <option value="$PROJECT_DIR$/META-INF/context.xml" />
         <option value="$PROJECT_DIR$/src/main/java/classes/Exercise.java" />
         <option value="$PROJECT_DIR$/src/main/java/classes/Solution.java" />
         <option value="$PROJECT_DIR$/src/main/java/servlets/ExerciseServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exercise.jsp" />
       </list>
     </option>
   </component>
@@ -308,7 +300,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543960286159" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543961573226" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Nowy folder/SimpleSchool/WARSZTAT_3" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -416,12 +408,12 @@
       <option name="presentableId" value="Default" />
       <updated>1543430631370</updated>
       <workItem from="1543430633205" duration="3534000" />
-      <workItem from="1543938007494" duration="16114000" />
+      <workItem from="1543938007494" duration="16714000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19648000" />
+    <option name="totallyTimeSpent" value="20248000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -565,13 +557,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exercise.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="55" column="12" lean-forward="true" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/filters/Filter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -600,6 +585,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/ExerciseServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="80" column="29" lean-forward="true" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -641,24 +633,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/ExerciseServlet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="80" column="29" lean-forward="true" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="29" />
+        <state relative-caret-position="221">
+          <caret line="27" column="60" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exercise.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="170">
+          <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        <state relative-caret-position="204">
+          <caret line="69" column="23" lean-forward="true" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
         </state>
       </provider>
     </entry>

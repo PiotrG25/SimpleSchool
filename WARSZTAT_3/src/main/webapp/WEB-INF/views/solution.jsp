@@ -9,33 +9,69 @@
     <jsp:include page="../header.jsp"/>
     <ol>
         <li>
-            Dodanie rozwiązania
+            Dodaj rozwiązanie
             <form action="/solution" method="post">
-                <input type="text" name="type" value="add" style="display: none;"/>
-                <input type="text" name="description" placeholder="opis"/><br/>
-                <input type="number" name="exercise_id" placeholder="id zadania"/><br/>
-                <input type="number" name="users_id" placeholder="id użytkownika"/><br/>
+
+                <input type="hidden" name="type" value="add"/>
+
+                <label>
+                    Opis:<br/>
+                    <input type="text" name="description" placeholder="opis"/>
+                </label><br/>
+
+                <label>
+                    Id zadania:<br/>
+                    <input type="number" name="exerciseId" placeholder="id zadania"/>
+                </label><br/>
+
+                <label>
+                    Id użytkownika:<br/>
+                    <input type="number" name="userId" placeholder="id użytkownika"/>
+                </label><br/>
+
                 <input type="submit" value="Dodaj"/><br/>
             </form>
         </li>
         <li>
-            Edycja rozwiązania
+            Edytuj rozwiązanie:
             <form action="/solution" method="post">
-                <input type="text" name="type" value="edit" style="display: none;"/>
-                Podaj id rozwiązania do edycji<br/>
-                <input type="number" name="id" placeholder="id"/><br/><br/>
-                <input type="text" name="description" placeholder="opis"/><br/>
-                <input type="number" name="exercise_id" placeholder="id zadania"/><br/>
-                <input type="number" name="users_id" placeholder="id użytkownika"/><br/>
+
+                <input type="hidden" name="type" value="edit"/>
+
+                <label>
+                    Id rozwiązania:<br/>
+                    <input type="number" name="id" placeholder="id rozwiązania"/>
+                </label>
+
+                <label>
+                    Opis:<br/>
+                    <input type="text" name="description" placeholder="opis"/>
+                </label><br/>
+
+                <label>
+                    Id zadania:<br/>
+                    <input type="number" name="exerciseId" placeholder="id zadania"/>
+                </label><br/>
+
+                <label>
+                    Id użytkownika:<br/>
+                    <input type="number" name="userId" placeholder="id użytkownika"/>
+                </label><br/>
+
                 <input type="submit" value="Edytuj"/><br/>
             </form>
         </li>
         <li>
             Usunięcie rozwiązania
             <form action="/solution" method="post">
-                <input type="text" name="type" value="delete" style="display: none;"/>
-                Podaj id rozwiązania do usunięcia
-                <input type="number" name="id" placeholder="id"/><br/>
+
+                <input type="hidden" name="type" value="delete"/>
+
+                <label>
+                    Id rozwiązania:<br/>
+                    <input type="number" name="id" placeholder="id rozwiązania"/>
+                </label>
+
                 <input type="submit" value="Usuń"/><br/>
             </form>
         </li>

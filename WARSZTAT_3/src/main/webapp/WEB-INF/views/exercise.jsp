@@ -36,8 +36,8 @@
                 <input type="hidden" name="type" value="edit"/>
 
                 <label>
-                    Id:<br/>
-                    <input type="number" name="id" placeholder="id"/>
+                    Id zadania:<br/>
+                    <input type="number" name="id" placeholder="id zadania"/>
                 </label><br/>
 
                 <label>
@@ -60,8 +60,8 @@
                 <input type="hidden" name="type" value="delete"/>
 
                 <label>
-                    Id:<br/>
-                    <input type="number" name="id" placeholder="id"/>
+                    Id zadania:<br/>
+                    <input type="number" name="id" placeholder="id zadania"/>
                 </label><br/>
 
                 <input type="submit" value="Usuń"/><br/>
