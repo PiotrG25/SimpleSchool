@@ -1,4 +1,4 @@
-package classes;
+package other;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
