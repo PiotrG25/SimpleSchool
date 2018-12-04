@@ -70,7 +70,7 @@
                 <label>
                     Id rozwiązania:<br/>
                     <input type="number" name="id" placeholder="id rozwiązania"/>
-                </label>
+                </label><br/>
 
                 <input type="submit" value="Usuń"/><br/>
             </form>
@@ -83,8 +83,8 @@
             <td>created</td>
             <td>updated</td>
             <td>description</td>
-            <td>exercise_id</td>
-            <td>users_id</td>
+            <td>exerciseId</td>
+            <td>userId</td>
         </tr>
         <c:forEach items="${solutions}" var="s">
             <tr>
@@ -92,8 +92,8 @@
                 <td>${s.created}</td>
                 <td>${s.updated}</td>
                 <td>${s.description}</td>
-                <td>${s.exercise_id}</td>
-                <td>${s.users_id}</td>
+                <td>${s.exerciseId}</td>
+                <td>${s.userId}</td>
             </tr>
         </c:forEach>
     </table>

@@ -4,6 +4,8 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,8 +64,8 @@ public class Solution {
         ResultSet rs = selectPreparedStatement.executeQuery();
 
         if (rs.next()) {
-            LocalDateTime created = LocalDateTime.from(rs.getDate("created").toInstant());
-            LocalDateTime updated = LocalDateTime.from(rs.getDate("updated").toInstant());
+            LocalDateTime created = rs.getTimestamp("created").toLocalDateTime();
+            LocalDateTime updated = rs.getTimestamp("updated").toLocalDateTime();
             String description = rs.getString("description");
             int exercise_id = rs.getInt("exercise_id");
             int users_id = rs.getInt("users_id");
@@ -133,8 +135,8 @@ public class Solution {
         String insert = "INSERT INTO solution (created, updated, description, exercise_id, users_id) VALUES (?, ?, ?, ?, ?);";
         PreparedStatement insertPreparedStatement = conn.prepareStatement(insert, RETURN_GENERATED_KEYS);
 
-        insertPreparedStatement.setString(1, dateFormat.format(created));
-        insertPreparedStatement.setString(2, dateFormat.format(updated));
+        insertPreparedStatement.setTimestamp(1, Timestamp.valueOf(created));
+        insertPreparedStatement.setTimestamp(2, Timestamp.valueOf(updated));
         insertPreparedStatement.setString(3, description);
         insertPreparedStatement.setInt(4, exerciseId);
         insertPreparedStatement.setInt(5, userId);
@@ -149,7 +151,7 @@ public class Solution {
         updatePreparedStatement.setString(1, description);
         updatePreparedStatement.setInt(2, exerciseId);
         updatePreparedStatement.setInt(3, userId);
-        updatePreparedStatement.setString(4, dateFormat.format(LocalDateTime.now()));
+        updatePreparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
         updatePreparedStatement.setInt(5, id);
 
         return updatePreparedStatement;
@@ -159,7 +161,6 @@ public class Solution {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -167,7 +168,6 @@ public class Solution {
     public LocalDateTime getCreated() {
         return created;
     }
-
     public void setCreated(LocalDateTime created) {
         this.created = created;
     }
@@ -175,7 +175,6 @@ public class Solution {
     public LocalDateTime getUpdated() {
         return updated;
     }
-
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
@@ -183,7 +182,6 @@ public class Solution {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -191,7 +189,6 @@ public class Solution {
     public int getExerciseId() {
         return exerciseId;
     }
-
     public void setExerciseId(int exerciseId) {
         this.exerciseId = exerciseId;
     }
@@ -199,7 +196,6 @@ public class Solution {
     public int getUserId() {
         return userId;
     }
-
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -207,7 +203,6 @@ public class Solution {
     public static DateFormat getDateFormat() {
         return dateFormat;
     }
-
     public static void setDateFormat(DateFormat dateFormat) {
         Solution.dateFormat = dateFormat;
     }

@@ -20,7 +20,7 @@ public class SolutionServlet extends HttpServlet {
 
         String type = request.getParameter("type");
         if(type == null || type.isEmpty()){
-            response.sendRedirect("/SolutionServlet");
+            response.sendRedirect("/solution");
         }
 
         String id = request.getParameter("id");
@@ -40,7 +40,7 @@ public class SolutionServlet extends HttpServlet {
                 break;
         }
 
-        response.sendRedirect("/SolutionServlet");
+        response.sendRedirect("/solution");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,7 +53,7 @@ public class SolutionServlet extends HttpServlet {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/views/SolutionServlet.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/solution.jsp").forward(request, response);
     }
 
 
