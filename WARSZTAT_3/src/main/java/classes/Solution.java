@@ -3,6 +3,7 @@ package classes;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Calendar;
 
@@ -10,127 +11,103 @@ import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
 public class Solution {
     private int id;
-    private Calendar created;
-    private Calendar updated;
+    private LocalDateTime created;
+    private LocalDateTime updated;
     private String description;
-    private int exercise_id;
-    private int users_id;
+    private int exerciseId;
+    private int userId;
 
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public Solution(Calendar created, Calendar updated, String description, int exercise_id, int users_id) {
+
+    public Solution(LocalDateTime created, LocalDateTime updated, String description, int exerciseId, int userId) {
         this.created = created;
         this.updated = updated;
         this.description = description;
-        this.exercise_id = exercise_id;
-        this.users_id = users_id;
+        this.exerciseId = exerciseId;
+        this.userId = userId;
     }
 
-    public String saveToDB(Connection conn) throws SQLException {
-        if (created == null) {
-            System.err.println("Brak daty stworzenia");
-            return "created";
-        }
-        if (updated == null) {
-            System.err.println("Brak daty aktualizacji");
-            return "updated";
-        }
-        if (description == null) {
-            System.err.println("Brak opisu");
-            return "description";
-        }
-        if (exercise_id == 0) {
-            System.err.println("Brak id zadania");
-            return "exercise_id";
-        }
-        if (users_id == 0) {
-            System.err.println("Brak id uzytkownika");
-            return "users_id";
-        }
-        Statement stm = conn.createStatement();
 
-        //check exercise_id existance
-        String check = "SELECT id FROM exercise;";
-        ResultSet rs = stm.executeQuery(check);
-        boolean exeists = false;
-        while (rs.next()) {
-            if (rs.getInt("id") == exercise_id) {
-                exeists = true;
-                break;
-            }
-        }
-        rs.close();
-        if (exeists == false) {
-            System.err.println("Nie ma zadania o takim id");
+    public String saveToDB(Connection conn) throws SQLException {
+
+        if (!isExercise(conn)) {
             return "exercise";
         }
 
-        //check users_id existance
-        check = "SELECT id FROM users;";
-        rs = stm.executeQuery(check);
-        exeists = false;
-        while (rs.next()) {
-            if (rs.getInt("id") == users_id) {
-                exeists = true;
-                break;
-            }
+        if(!isUser(conn)){
+            return "user";
         }
-        rs.close();
-        if (exeists == false) {
-            System.err.println("Nie ma uzytkownika o takim id");
-            return "users";
-        }
-        //Koniec walidacji
 
-        if (id == 0) {
-            String insert = "INSERT INTO solution (created, updated, description, exercise_id, users_id) VALUES (?, ?, ?, ?, ?);";
-            PreparedStatement pstm = conn.prepareStatement(insert, RETURN_GENERATED_KEYS);
+        if(id == 0){
+            PreparedStatement insertPreparedStatement = prepareInsert(conn);
+            insertPreparedStatement.executeUpdate();
 
-            pstm.setString(1, dateFormat.format(created.getTime()));//new java.sql.Date(created.getTimeInMillis())
-            pstm.setString(2, dateFormat.format(updated.getTime()));
-            pstm.setString(3, description);
-            pstm.setInt(4, exercise_id);
-            pstm.setInt(5, users_id);
-
-            pstm.executeUpdate();
-            rs = pstm.getGeneratedKeys();
+            ResultSet rs = insertPreparedStatement.getGeneratedKeys();
             rs.next();
             this.id = rs.getInt(1);
             rs.close();
-        } else {
-            String select = "SELECT * FROM solution WHERE id=?;";
-            PreparedStatement selectStatement = conn.prepareStatement(select);
-            selectStatement.setInt(1, id);
-            ResultSet selectResult = selectStatement.executeQuery();
-            selectResult.next();
+        }else{
+            PreparedStatement updatePreparedStatement = prepareUpdate(conn);
+            updatePreparedStatement.executeUpdate();
+        }
 
-            String dbDescription = selectResult.getString("description");
-            int dbExercise_id = selectResult.getInt("exercise_id");
-            int dbUsers_id = selectResult.getInt("users_id");
+        return "0";
+    }
 
-            if(!description.equals(dbDescription)){
-                String update = "UPDATE solution SET description=? WHERE id=?";
-                PreparedStatement updateStatement = conn.prepareStatement(update);
-                updateStatement.setInt(2, id);
-                updateStatement.setString(1, description);
-                updateStatement.executeUpdate();
-            }
-            if(exercise_id != dbExercise_id){
-                String update = "UPDATE solution SET exercise_id=? WHERE id=?";
-                PreparedStatement updateStatement = conn.prepareStatement(update);
-                updateStatement.setInt(2, id);
-                updateStatement.setInt(1, exercise_id);
-                updateStatement.executeUpdate();
-            }
-            if(users_id != dbUsers_id){
-                String update = "UPDATE solution SET users_id=? WHERE id=?";
-                PreparedStatement updateStatement = conn.prepareStatement(update);
-                updateStatement.setInt(2, id);
-                updateStatement.setInt(1, users_id);
-                updateStatement.executeUpdate();
+    private boolean isExercise(Connection conn)throws SQLException{
+        Statement stm = conn.createStatement();
+        String select = "SELECT id FROM exercise;";
+        ResultSet rs = stm.executeQuery(select);
+
+        while (rs.next()) {
+            if (rs.getInt("id") == exerciseId) {
+                rs.close();
+                return true;
             }
         }
-        return "0";
+        rs.close();
+        return false;
+    }
+
+    private boolean isUser(Connection conn)throws SQLException{
+        Statement stm = conn.createStatement();
+        String select = "SELECT id FROM users;";
+        ResultSet rs = stm.executeQuery(select);
+        while (rs.next()) {
+            if (rs.getInt("id") == userId) {
+                rs.close();
+                return true;
+            }
+        }
+        rs.close();
+        return false;
+    }
+
+    private PreparedStatement prepareInsert(Connection conn)throws SQLException{
+        String insert = "INSERT INTO solution (created, updated, description, exercise_id, users_id) VALUES (?, ?, ?, ?, ?);";
+        PreparedStatement insertPreparedStatement = conn.prepareStatement(insert, RETURN_GENERATED_KEYS);
+
+        insertPreparedStatement.setString(1, dateFormat.format(created));
+        insertPreparedStatement.setString(2, dateFormat.format(updated));
+        insertPreparedStatement.setString(3, description);
+        insertPreparedStatement.setInt(4, exerciseId);
+        insertPreparedStatement.setInt(5, userId);
+
+        return insertPreparedStatement;
+    }
+
+    private PreparedStatement prepareUpdate(Connection conn)throws SQLException{
+        String update = "UPDATE solution SET description = ?, exercise_id = ?, users_id = ?, updated = ? WHERE id = ?;";
+        PreparedStatement updatePreparedStatement = conn.prepareStatement(update);
+
+        updatePreparedStatement.setString(1, description);
+        updatePreparedStatement.setInt(2, exerciseId);
+        updatePreparedStatement.setInt(3, userId);
+        updatePreparedStatement.setString(4, dateFormat.format(LocalDateTime.now()));
+        updatePreparedStatement.setInt(5, id);
+
+        return updatePreparedStatement;
     }
 
     public static Solution loadSolutionById(Connection conn, int id) throws SQLException {
@@ -224,53 +201,4 @@ public class Solution {
     }
 
 
-    public Solution setCreated(Calendar created) {
-        this.created = created;
-        return this;
-    }
-
-    public Solution setUpdated(Calendar updated) {
-        this.updated = updated;
-        return this;
-    }
-
-    public Solution setDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    public Solution setExercise_id(int exercise_id) {
-        this.exercise_id = exercise_id;
-        return this;
-    }
-
-    public Solution setUsers_is(int users_id) {
-        this.users_id = users_id;
-        return this;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public String getCreated() {
-        return dateFormat.format(created.getTime());
-    }
-
-    public String getUpdated() {
-        return dateFormat.format(updated.getTime());
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getExercise_id() {
-        return exercise_id;
-    }
-
-    public int getUsers_id() {
-        return users_id;
-    }
 }
