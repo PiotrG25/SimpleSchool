@@ -4,10 +4,10 @@
 <head>
     <title>user_group</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/style.css" type="text/css"/>
 </head>
 <body>
-    <jsp:include page="WEB-INF/header.jsp"/>
+    <jsp:include page="../header.jsp"/>
     <ol>
         <li>
             Dodanie grupy
@@ -50,6 +50,6 @@
             </tr>
         </c:forEach>
     </table>
-    <jsp:include page="WEB-INF/footer.jsp"/>
+    <jsp:include page="../footer.jsp"/>
 </body>
 </html>

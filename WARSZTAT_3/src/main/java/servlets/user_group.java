@@ -64,7 +64,7 @@ public class user_group extends HttpServlet {
         ){
             User_group[] user_groups = User_group.loadAllUser_groups(conn);
             request.setAttribute("groups", user_groups);
-            getServletContext().getRequestDispatcher("/user_group.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/views/user_group.jsp").forward(request, response);
         }catch(SQLException e){
             e.printStackTrace();
         }

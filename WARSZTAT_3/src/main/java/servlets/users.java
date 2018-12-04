@@ -78,7 +78,7 @@ public class users extends HttpServlet {
         ){
             Users[] users = Users.loadAllUsers(conn);
             request.setAttribute("users", users);
-            getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
         }catch(SQLException e){
             e.printStackTrace();
         }

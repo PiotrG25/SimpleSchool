@@ -84,7 +84,7 @@ public class solution extends HttpServlet {
         ){
             Solution[] solutions = Solution.loadAllSolutions(conn);
             request.setAttribute("solutions", solutions);
-            getServletContext().getRequestDispatcher("/solution.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/views/solution.jsp").forward(request, response);
         }catch(SQLException e){
             e.printStackTrace();
         }

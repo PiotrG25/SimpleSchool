@@ -71,7 +71,7 @@ public class exercise extends HttpServlet {
             request.setCharacterEncoding("utf-8");
             response.setCharacterEncoding("utf-8");
             request.setAttribute("exercises", exercises);
-            getServletContext().getRequestDispatcher("/exercise.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/views/exercise.jsp").forward(request, response);
         }catch(SQLException e){
             e.printStackTrace();
         }

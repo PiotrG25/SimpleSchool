@@ -16,7 +16,7 @@ public class MainApp extends HttpServlet {
     //todo solution created i updated zwracaja godzine 02:00:00
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/tableChoice.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/tableChoice.jsp").forward(request, response);
         //todo Archaizm dla potomnych
         /*
         try {

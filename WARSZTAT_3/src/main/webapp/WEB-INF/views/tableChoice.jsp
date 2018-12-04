@@ -5,7 +5,7 @@
     <title>tableChoice</title>
 </head>
 <body>
-    <jsp:include page="WEB-INF/header.jsp"/>
-    <jsp:include page="WEB-INF/footer.jsp"/>
+    <jsp:include page="../header.jsp"/>
+    <jsp:include page="../footer.jsp"/>
 </body>
 </html>
