@@ -3,7 +3,9 @@ package classes;
 import other.BCrypt;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
@@ -113,28 +115,20 @@ public class User {
             return u;
         }
         rs.close();
-        System.err.println("Brak urzytkownika o takim id");
         return null;
     }
 
-    public static User[] loadAllUsers(Connection conn) throws SQLException {
+    public static List<User> loadAllUsers(Connection conn) throws SQLException {
         String selectIds = "SELECT id FROM users;";
         ResultSet rs = (conn.createStatement()).executeQuery(selectIds);
-        User[] u = new User[1];
+        List<User> users = new ArrayList<>();
 
         while(rs.next()){
-            u[u.length - 1] = loadUserById(conn, rs.getInt("id"));
-            u = Arrays.copyOf(u, u.length + 1);
+            users.add(loadUserById(conn, rs.getInt("id")));
         }
         rs.close();
-        u = Arrays.copyOf(u, u.length - 1);
 
-        if(u.length == 0){
-            System.err.println("Brak uzytkownikow");
-            return null;
-        }else{
-            return u;
-        }
+        return users;
     }
 
     public void delete(Connection conn) throws SQLException{
@@ -172,11 +166,8 @@ public class User {
     public String getPassword() {
         return password;
     }
-    public User setPassword(String password){
-        String hashed;
-        hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-        this.password = hashed;
-        return this;
+    public void setPassword(String password){
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public int getUserGroupId() {

@@ -12,14 +12,14 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(name = "users", urlPatterns = "/users")
-public class users extends HttpServlet {
+@WebServlet(name = "UserServlet", urlPatterns = "/user")
+public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String type = request.getParameter("type");
 
         if(type == null || type.isEmpty()){
-            response.sendRedirect("/users");
+            response.sendRedirect("/user");
         }
 
         try(
@@ -64,7 +64,7 @@ public class users extends HttpServlet {
                 }
             }
 
-            response.sendRedirect("/users");
+            response.sendRedirect("/user");
 
         }catch(SQLException e){
             e.printStackTrace();
@@ -77,10 +77,10 @@ public class users extends HttpServlet {
                 Connection conn = DbUtil.getConn();
         ){
             User[] users = User.loadAllUsers(conn);
-            request.setAttribute("users", users);
-            getServletContext().getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
+            request.setAttribute("UserServlet", users);
         }catch(SQLException e){
             e.printStackTrace();
         }
+        getServletContext().getRequestDispatcher("/WEB-INF/views/user.jsp").forward(request, response);
     }
 }
