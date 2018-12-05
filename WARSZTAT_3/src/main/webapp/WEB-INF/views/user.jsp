@@ -9,35 +9,79 @@
     <jsp:include page="../header.jsp"/>
     <ol>
         <li>
-            Dodanie użytkownika
-            <form action="/users" method="post">
-                <input type="text" name="type" value="add" style="display: none;"/>
-                <input type="text" name="username" placeholder="nazwa użytkownika"/><br/>
-                <input type="email" name="email" placeholder="email"/><br/>
-                <input type="password" name="password" placeholder="hasło"/><br/>
-                <input type="number" name="user_group_id" placeholder="id grupy"/><br/>
+            Dodaj użytkownika
+            <form action="/user" method="post">
+
+                <input type="hidden" name="type" value="add"/>
+
+                <label>
+                    Nazwa użytkownika:<br/>
+                    <input type="text" name="name" placeholder="nazwa użytkownika"/>
+                </label><br/>
+
+                <label>
+                    Email:<br/>
+                    <input type="email" name="email" placeholder="email"/>
+                </label><br/>
+
+                <label>
+                    Hasło:<br/>
+                    <input type="password" name="password" placeholder="hasło"/>
+                </label><br/>
+
+                <label>
+                    Id grupy:<br/>
+                    <input type="number" name="userGroupId" placeholder="id grupy"/>
+                </label><br/>
+
                 <input type="submit" value="Dodaj"/><br/>
             </form>
         </li>
         <li>
-            Edycja użytkownika
-            <form action="/users" method="post">
-                <input type="text" name="type" value="edit" style="display: none;"/>
-                Podaj id użytkownika do edycji<br/>
-                <input type="number" name="id" placeholder="id"/><br/><br/>
-                <input type="text" name="username" placeholder="nazwa użytkownika"/><br/>
-                <input type="email" name="email" placeholder="email"/><br/>
-                <input type="password" name="password" placeholder="hasło"/><br/>
-                <input type="number" name="user_group_id" placeholder="id grupy"/><br/>
+            Edytuj użytkownika
+            <form action="/user" method="post">
+
+                <input type="hidden" name="type" value="add"/>
+
+                <label>
+                    Id użytkownika:<br/>
+                    <input type="number" name="id" placeholder="id użytkownika"/>
+                </label><br/>
+
+                <label>
+                    Nowa nazwa użytkownika:<br/>
+                    <input type="text" name="name" placeholder="nowa nazwa użytkownika"/>
+                </label><br/>
+
+                <label>
+                    Nowy email:<br/>
+                    <input type="email" name="email" placeholder="nowy email"/>
+                </label><br/>
+
+                <label>
+                    Nowe hasło:<br/>
+                    <input type="password" name="password" placeholder="nowe hasło"/>
+                </label><br/>
+
+                <label>
+                    Nowe id grupy:<br/>
+                    <input type="number" name="userGroupId" placeholder="nowe id grupy"/>
+                </label><br/>
+
                 <input type="submit" value="Edytuj"/><br/>
             </form>
         </li>
         <li>
-            Usunięcie użytkownika
-            <form action="/users" method="post">
-                <input type="text" name="type" value="delete" style="display: none"/>
-                Podaj id użytkownika do usunięcia
-                <input type="number" name="id" placeholder="id"/><br/>
+            Usuń użytkownika
+            <form action="/user" method="post">
+
+                <input type="hidden" name="type" value="delete"/>
+
+                <label>
+                    Id użytkownika:<br/>
+                    <input type="number" name="id" placeholder="id użytkownika"/>
+                </label><br/>
+
                 <input type="submit" value="Usuń"/><br/>
             </form>
         </li>

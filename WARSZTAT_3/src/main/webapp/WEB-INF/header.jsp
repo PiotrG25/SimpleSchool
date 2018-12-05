@@ -34,7 +34,7 @@
     <a href="/">Strona główna</a><br/>
     <a href="/exercise">Exercise</a> - obsługa zadań<br/>
     <a href="/solution">Solution</a> - obsługa rozwiązań<br/>
-    <a href="/user_group">User_group</a> - obsługa grup<br/>
-    <a href="/users">Users</a> - obsługa użytkowników<br/>
+    <a href="/userGroup">User_group</a> - obsługa grup<br/>
+    <a href="/user">Users</a> - obsługa użytkowników<br/>
 </body>
 </html>
