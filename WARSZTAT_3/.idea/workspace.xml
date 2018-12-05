@@ -9,14 +9,8 @@
     <list default="true" id="4d2aacc2-f5ed-4de2-b7a6-c2ada2edb6af" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/classes/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Solution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/WARSZTAT_3-1.0-SNAPSHOT/WEB-INF/classes/classes/Exercise.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/WARSZTAT_3-1.0-SNAPSHOT/WEB-INF/classes/classes/Exercise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/WARSZTAT_3-1.0-SNAPSHOT/WEB-INF/classes/classes/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/WARSZTAT_3-1.0-SNAPSHOT/WEB-INF/classes/classes/Solution.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/WARSZTAT_3-1.0-SNAPSHOT/WEB-INF/classes/servlets/solution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/Exercise.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/Exercise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/Solution.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlets/solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/User_group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/UserGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/user_group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/user_group.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,14 +25,14 @@
         <counts>
           <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.50" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.50" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
-          <entry key="java" value="36" />
+          <entry key="java" value="38" />
           <entry key="jsp" value="30" />
           <entry key="xml" value="3" />
         </counts>
@@ -46,22 +40,24 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="JAVA" value="36" />
+          <entry key="JAVA" value="38" />
           <entry key="JSP" value="30" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3794" />
+          <entry key="dummy" value="1" />
+          <entry key="java" value="4124" />
           <entry key="jsp" value="1204" />
           <entry key="xml" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3793" />
+          <entry key="JAVA" value="4123" />
           <entry key="JSP" value="1204" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="RegExp" value="1" />
           <entry key="XML" value="14" />
         </counts>
@@ -73,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="83" column="13" lean-forward="true" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+            <state relative-caret-position="323">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,11 +78,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+            <state relative-caret-position="1190">
+              <caret line="70" column="40" lean-forward="true" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/servlets/user_group.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="551">
+              <caret line="66" column="68" selection-start-line="66" selection-start-column="68" selection-end-line="66" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/classes/UserGroup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="74" column="61" lean-forward="true" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,20 +111,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/classes/Solution.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="128" column="9" lean-forward="true" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+            <state relative-caret-position="52">
+              <caret line="73" column="88" lean-forward="true" selection-start-line="73" selection-start-column="88" selection-end-line="73" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exercise.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -156,8 +164,10 @@
         <option value="$PROJECT_DIR$/src/main/java/servlets/ExerciseServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/exercise.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/classes/Solution.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/classes/User_group.java" />
+        <option value="$PROJECT_DIR$/src/main/java/classes/Solution.java" />
+        <option value="$PROJECT_DIR$/src/main/java/classes/UserGroup.java" />
       </list>
     </option>
   </component>
@@ -187,8 +197,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -279,6 +287,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -393,17 +403,18 @@
       <updated>1543430631370</updated>
       <workItem from="1543430633205" duration="3534000" />
       <workItem from="1543938007494" duration="18770000" />
+      <workItem from="1544002873025" duration="1936000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22304000" />
+    <option name="totallyTimeSpent" value="24240000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.92622954" visible="true" weight="0.22314675" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.92622954" visible="true" weight="0.22617246" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -450,27 +461,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/user_group.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="66" column="68" selection-start-line="66" selection-start-column="68" selection-end-line="66" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/footer.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/style.css" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/footer.jsp" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tableChoice.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -506,41 +498,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/addExercise.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/EditServlets/EditServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/AddServlets/AddExerciseServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="16" column="121" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="121" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/EditServlets/EditExerciseServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DeleteServlets/DeleteExerciseServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/addExercise.jsp" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/EditServlets/EditServlet.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/AddServlets/AddExerciseServlet.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/EditServlets/EditExerciseServlet.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/DeleteServlets/DeleteExerciseServlet.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/filters/Filter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -588,18 +550,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/servlets/SolutionServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="83" column="13" lean-forward="true" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/classes/Solution.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="128" column="9" lean-forward="true" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -608,8 +560,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/solution.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+        <state relative-caret-position="1190">
+          <caret line="70" column="40" lean-forward="true" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/user_group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="66" column="68" selection-start-line="66" selection-start-column="68" selection-end-line="66" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/classes/Solution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="73" column="88" lean-forward="true" selection-start-line="73" selection-start-column="88" selection-end-line="73" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/classes/UserGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="74" column="61" lean-forward="true" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

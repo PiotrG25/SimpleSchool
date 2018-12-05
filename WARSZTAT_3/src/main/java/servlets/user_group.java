@@ -1,7 +1,7 @@
 package servlets;
 
 import other.DbUtil;
-import classes.User_group;
+import classes.UserGroup;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,16 +35,16 @@ public class user_group extends HttpServlet {
             boolean doEdit = (doAdd && doDelete);
 
             if(type.equals("add") && doAdd){
-                User_group user_group = new User_group(name);
+                UserGroup user_group = new UserGroup(name);
                 user_group.saveToDB(conn);
             }else if(type.equals("edit") && doEdit){
-                User_group user_group = User_group.loadUser_groupById(conn, Integer.parseInt(id));
+                UserGroup user_group = UserGroup.loadUser_groupById(conn, Integer.parseInt(id));
                 if(user_group != null){
                     user_group.setName(name);
                     user_group.saveToDB(conn);
                 }
             }else if(type.equals("delete") && doDelete){
-                User_group user_group = User_group.loadUser_groupById(conn, Integer.parseInt(id));
+                UserGroup user_group = UserGroup.loadUser_groupById(conn, Integer.parseInt(id));
                 if(user_group != null){
                     user_group.delete(conn);
                 }
@@ -62,7 +62,7 @@ public class user_group extends HttpServlet {
         try(
                 Connection conn = DbUtil.getConn();
         ){
-            User_group[] user_groups = User_group.loadAllUser_groups(conn);
+            UserGroup[] user_groups = UserGroup.loadAllUser_groups(conn);
             request.setAttribute("groups", user_groups);
             getServletContext().getRequestDispatcher("/WEB-INF/views/user_group.jsp").forward(request, response);
         }catch(SQLException e){

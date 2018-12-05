@@ -4,8 +4,6 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +73,7 @@ public class Solution {
 
     public static List<Solution> loadAllSolutions(Connection conn) throws SQLException {
         String select = "SELECT id FROM solution;";
-        ResultSet rs = (conn.createStatement()).executeQuery(select);
+        ResultSet rs = conn.createStatement().executeQuery(select);
         List<Solution> solutions = new ArrayList<>();
 
         while(rs.next()){
