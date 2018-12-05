@@ -1,7 +1,7 @@
 package servlets;
 
 import other.DbUtil;
-import classes.Users;
+import classes.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,10 +38,10 @@ public class users extends HttpServlet {
             boolean doDelete = (id != null && !id.isEmpty());
 
             if(type.equals("add") && doAdd){
-                Users users = new Users(username, email, password, Integer.parseInt(user_group_id));
+                User users = new User(username, email, password, Integer.parseInt(user_group_id));
                 users.saveToDB(conn);
             }else if(type.equals("edit") && doEdit){
-                Users users = Users.loadUserById(conn, Integer.parseInt(id));
+                User users = User.loadUserById(conn, Integer.parseInt(id));
                 if(users != null){
                     if(username != null && !username.isEmpty()){
                         users.setUserName(username);
@@ -58,7 +58,7 @@ public class users extends HttpServlet {
                     users.saveToDB(conn);
                 }
             }else if(type.equals("delete") && doDelete){
-                Users users = Users.loadUserById(conn, Integer.parseInt(id));
+                User users = User.loadUserById(conn, Integer.parseInt(id));
                 if(users != null){
                     users.delete(conn);
                 }
@@ -76,7 +76,7 @@ public class users extends HttpServlet {
         try(
                 Connection conn = DbUtil.getConn();
         ){
-            Users[] users = Users.loadAllUsers(conn);
+            User[] users = User.loadAllUsers(conn);
             request.setAttribute("users", users);
             getServletContext().getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
         }catch(SQLException e){
