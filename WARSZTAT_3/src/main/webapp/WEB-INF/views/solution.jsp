@@ -44,8 +44,8 @@
                 </label>
 
                 <label>
-                    Opis:<br/>
-                    <input type="text" name="description" placeholder="opis"/>
+                    Nowy opis:<br/>
+                    <input type="text" name="description" placeholder="nowy opis"/>
                 </label><br/>
 
                 <label>

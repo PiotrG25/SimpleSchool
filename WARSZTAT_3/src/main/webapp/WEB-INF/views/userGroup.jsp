@@ -9,29 +9,49 @@
     <jsp:include page="../header.jsp"/>
     <ol>
         <li>
-            Dodanie grupy
-            <form action="/user_group" method="post">
-                <input type="text" name="type" value="add" style="display: none;"/>
-                <input type="text" name="name" placeholder="nazwa"/><br/>
+            Dodaj grupę
+            <form action="/userGroup" method="post">
+
+                <input type="hidden" name="type" value="add"/>
+
+                <labe>
+                    Nazwa:<br/>
+                    <input type="text" name="name" placeholder="nazwa"/>
+                </labe><br/>
+
                 <input type="submit" value="Dodaj"/><br/>
             </form>
         </li>
         <li>
-            Edycja grupy
-            <form action="/user_group" method="post">
-                <input type="text" name="type" value="edit" style="display: none;"/>
-                Podaj id grupy do edycji<br/>
-                <input type="number" name="id" placeholder="id"/><br/><br/>
-                <input type="text" name="name" placeholder="nazwa"/><br/>
+            Edytuj grupę
+            <form action="/userGroup" method="post">
+
+                <input type="hidden" name="type" value="edit"/>
+
+                <label>
+                    Id grupy:<br/>
+                    <input type="number" name="id" placeholder="id grupy"/>
+                </label><br/>
+
+                <label>
+                    Nowa nazwa:<br/>
+                    <input type="text" name="name" placeholder="nowa nazwa"/>
+                </label><br/>
+
                 <input type="submit" value="Edytuj"/><br/>
             </form>
         </li>
         <li>
-            Usunięcie grupy
-            <form action="/user_group" method="post">
-                <input type="text" name="type" value="delete" style="display: none;"/>
-                Podaj id grupy do usunięcia<br/>
-                <input type="number" name="id" placeholder="id"/><br/>
+            Usuń grupę
+            <form action="/userGroup" method="post">
+
+                <input type="hidden" name="type" value="delete"/>
+
+                <label>
+                    Id grupy<br/>
+                    <input type="number" name="id" placeholder="id grupy"/>
+                </label><br/>
+
                 <input type="submit" value="Usuń"/><br/>
             </form>
         </li>
