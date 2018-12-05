@@ -10,7 +10,7 @@
     <ol>
         <li>
             Dodaj grupę
-            <form action="/userGroup" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="add"/>
 
@@ -24,7 +24,7 @@
         </li>
         <li>
             Edytuj grupę
-            <form action="/userGroup" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="edit"/>
 
@@ -43,7 +43,7 @@
         </li>
         <li>
             Usuń grupę
-            <form action="/userGroup" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="delete"/>
 

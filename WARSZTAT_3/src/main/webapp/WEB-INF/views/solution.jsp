@@ -10,7 +10,7 @@
     <ol>
         <li>
             Dodaj rozwiązanie
-            <form action="/solution" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="add"/>
 
@@ -34,14 +34,14 @@
         </li>
         <li>
             Edytuj rozwiązanie:
-            <form action="/solution" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="edit"/>
 
                 <label>
                     Id rozwiązania:<br/>
                     <input type="number" name="id" placeholder="id rozwiązania"/>
-                </label>
+                </label><br/>
 
                 <label>
                     Nowy opis:<br/>
@@ -63,7 +63,7 @@
         </li>
         <li>
             Usunięcie rozwiązania
-            <form action="/solution" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="delete"/>
 

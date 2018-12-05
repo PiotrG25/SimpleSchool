@@ -62,14 +62,13 @@ public class UserServlet extends HttpServlet {
         try(Connection conn = DbUtil.getConn();){
 
             if(name == null || name.isEmpty() || email == null || email.isEmpty() ||
-                password == null || password.isEmpty() || userGroupId == null || !userGroupId.matches("^[0-9]+$")
-            ){
+                password == null || password.isEmpty() || userGroupId == null || !userGroupId.matches("^[0-9]+$")){
                 conn.close();
                 return;
             }
 
-            User users = new User(name, email, password, Integer.parseInt(userGroupId));
-            users.saveToDB(conn);
+            User user = new User(name, email, password, Integer.parseInt(userGroupId));
+            user.saveToDB(conn);
 
         }catch(SQLException e){
             e.printStackTrace();

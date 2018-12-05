@@ -19,14 +19,14 @@ public class User {
     public User(String name, String email, String password, int userGroupId) {
         this.name = name;
         this.email = email;
-        this.password = password;
+        setPassword(password);
         this.userGroupId = userGroupId;
     }
 
 
     public void saveToDB(Connection conn) throws SQLException {
 
-        if(!isUserGroupId(conn) || isEmailUnique(conn)){
+        if(!isUserGroupId(conn) || !isEmailUnique(conn)){
             return;
         }
 
@@ -49,7 +49,7 @@ public class User {
         String select = "SELECT id FROM user_group;";
         ResultSet rs = stm.executeQuery(select);
         while(rs.next()){
-            if(rs.getInt("id") == id){
+            if(rs.getInt("id") == userGroupId){
                 rs.close();
                 return true;
             }
@@ -59,12 +59,12 @@ public class User {
     }
 
     private boolean isEmailUnique(Connection conn)throws SQLException{
-        String select = "SELECT id, email FROM users WHERE email = ?;";
+        String select = "SELECT * FROM users WHERE email = ?;";
         PreparedStatement pstm = conn.prepareStatement(select);
         pstm.setString(1, email);
         ResultSet rs = pstm.executeQuery();
 
-        if(rs.next() && id != rs.getInt("id")){
+        if(rs.next() && rs.getInt("id") != id){
             rs.close();
             return false;
         }
@@ -85,13 +85,14 @@ public class User {
     }
 
     private PreparedStatement prepareUpdate(Connection conn)throws SQLException{
-        String update = "UPDATE user SET username = ?, email = ?, password = ?, user_group_id = ?;";
+        String update = "UPDATE users SET username = ?, email = ?, password = ?, user_group_id = ? WHERE id = ?;";
         PreparedStatement pstm = conn.prepareStatement(update);
 
         pstm.setString(1, name);
         pstm.setString(2, email);
         pstm.setString(3, password);
         pstm.setInt(4, userGroupId);
+        pstm.setInt(5, id);
 
         return pstm;
     }
@@ -134,7 +135,7 @@ public class User {
         if(id != 0){
             String delete = "DELETE FROM users WHERE id = ?;";
             PreparedStatement pstm = conn.prepareStatement(delete);
-            pstm.setInt(1, this.id);
+            pstm.setInt(1, id);
             pstm.executeUpdate();
             id = 0;
         }

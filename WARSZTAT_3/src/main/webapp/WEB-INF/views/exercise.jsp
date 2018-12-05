@@ -12,7 +12,7 @@
     <ol>
         <li>
             Dodaj zadanie
-            <form action="/exercise" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="add"/>
 
@@ -31,7 +31,7 @@
         </li>
         <li>
             Edytuj zadanie
-            <form action="/exercise" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="edit"/>
 
@@ -55,7 +55,7 @@
         </li>
         <li>
             Usuń zadanie
-            <form action="/exercise" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="delete"/>
 

@@ -10,7 +10,7 @@
     <ol>
         <li>
             Dodaj użytkownika
-            <form action="/user" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="add"/>
 
@@ -39,9 +39,9 @@
         </li>
         <li>
             Edytuj użytkownika
-            <form action="/user" method="post">
+            <form method="post">
 
-                <input type="hidden" name="type" value="add"/>
+                <input type="hidden" name="type" value="edit"/>
 
                 <label>
                     Id użytkownika:<br/>
@@ -73,7 +73,7 @@
         </li>
         <li>
             Usuń użytkownika
-            <form action="/user" method="post">
+            <form method="post">
 
                 <input type="hidden" name="type" value="delete"/>
 
