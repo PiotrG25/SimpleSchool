@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "UserServlet", urlPatterns = "/user")
 public class UserServlet extends HttpServlet {
@@ -22,53 +23,25 @@ public class UserServlet extends HttpServlet {
             response.sendRedirect("/user");
         }
 
-        try(
-                Connection conn = DbUtil.getConn();
-        ){
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String userGroupId = request.getParameter("userGroupId");
 
-            String id = request.getParameter("id");
-            String username = request.getParameter("username");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String user_group_id = request.getParameter("user_group_id");
-
-            boolean doAdd = (username != null && !username.isEmpty() && email != null && !email.isEmpty() &&
-                    password != null && !password.isEmpty() && user_group_id != null && !user_group_id.isEmpty());
-            boolean doEdit = (id != null && !id.isEmpty());
-            boolean doDelete = (id != null && !id.isEmpty());
-
-            if(type.equals("add") && doAdd){
-                User users = new User(username, email, password, Integer.parseInt(user_group_id));
-                users.saveToDB(conn);
-            }else if(type.equals("edit") && doEdit){
-                User users = User.loadUserById(conn, Integer.parseInt(id));
-                if(users != null){
-                    if(username != null && !username.isEmpty()){
-                        users.setUserName(username);
-                    }
-                    if(email != null && !email.isEmpty()){
-                        users.setEmail(email);
-                    }
-                    if(password != null && !password.isEmpty()){
-                        users.setEmail(email);
-                    }
-                    if(user_group_id != null && !user_group_id.isEmpty()){
-                        users.setUser_group_id(Integer.parseInt(user_group_id));
-                    }
-                    users.saveToDB(conn);
-                }
-            }else if(type.equals("delete") && doDelete){
-                User users = User.loadUserById(conn, Integer.parseInt(id));
-                if(users != null){
-                    users.delete(conn);
-                }
-            }
-
-            response.sendRedirect("/user");
-
-        }catch(SQLException e){
-            e.printStackTrace();
+        switch(type){
+            case "add":
+                addUser(name, email, password, userGroupId);
+                break;
+            case "edit":
+                editUser(id, name, email, password, userGroupId);
+                break;
+            case "delete":
+                deleteUser(id);
+                break;
         }
+
+        response.sendRedirect("/user");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -76,11 +49,81 @@ public class UserServlet extends HttpServlet {
         try(
                 Connection conn = DbUtil.getConn();
         ){
-            User[] users = User.loadAllUsers(conn);
-            request.setAttribute("UserServlet", users);
+            List<User> users = User.loadAllUsers(conn);
+            request.setAttribute("users", users);
         }catch(SQLException e){
             e.printStackTrace();
         }
         getServletContext().getRequestDispatcher("/WEB-INF/views/user.jsp").forward(request, response);
+    }
+
+    private void addUser(String name, String email, String password, String userGroupId){
+
+        try(Connection conn = DbUtil.getConn();){
+
+            if(name == null || name.isEmpty() || email == null || email.isEmpty() ||
+                password == null || password.isEmpty() || userGroupId == null || !userGroupId.matches("^[0-9]+$")
+            ){
+                conn.close();
+                return;
+            }
+
+            User users = new User(name, email, password, Integer.parseInt(userGroupId));
+            users.saveToDB(conn);
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void editUser(String id, String name, String email, String password, String userGroupId) {
+
+        try(Connection conn = DbUtil.getConn();){
+
+            if(id == null || !id.matches("^[0-9]+$")){
+                conn.close();
+                return;
+            }
+
+            User user = User.loadUserById(conn, Integer.parseInt(id));
+            if(user != null){
+
+                if(name != null && !name.isEmpty()){
+                    user.setName(name);
+                }
+                if(email != null && !email.isEmpty()){
+                    user.setEmail(email);
+                }
+                if(password != null && !password.isEmpty()){
+                    user.setPassword(password);
+                }
+                if(userGroupId != null && userGroupId.matches("^[0-9]+$")){
+                    user.setUserGroupId(Integer.parseInt(userGroupId));
+                }
+                user.saveToDB(conn);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteUser(String id) {
+
+        try(Connection conn = DbUtil.getConn();){
+
+            if(id == null || !id.matches("^[0-9]+$")){
+                conn.close();
+                return;
+            }
+
+            User user = User.loadUserById(conn, Integer.parseInt(id));
+            if(user != null){
+                user.delete(conn);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 }

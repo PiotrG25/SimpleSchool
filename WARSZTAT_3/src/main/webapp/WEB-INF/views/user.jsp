@@ -46,18 +46,18 @@
     <table>
         <tr>
             <td>id</td>
-            <td>username</td>
+            <td>name</td>
             <td>email</td>
             <td>password</td>
-            <td>user_group_id</td>
+            <td>userGroupId</td>
         </tr>
         <c:forEach items="${users}" var="u">
             <tr>
                 <td>${u.id}</td>
-                <td>${u.username}</td>
+                <td>${u.name}</td>
                 <td>${u.email}</td>
                 <td>${u.password}</td>
-                <td>${u.user_group_id}</td>
+                <td>${u.userGroupId}</td>
             </tr>
         </c:forEach>
     </table>

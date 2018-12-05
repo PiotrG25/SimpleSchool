@@ -4,7 +4,6 @@ import other.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
@@ -75,7 +74,7 @@ public class User {
 
     private PreparedStatement prepareInsert(Connection conn)throws SQLException{
         String insert = "INSERT INTO users (username, email, password, user_group_id) VALUES (?, ?, ?, ?);";
-        PreparedStatement pstm = conn.prepareStatement(insert);
+        PreparedStatement pstm = conn.prepareStatement(insert, RETURN_GENERATED_KEYS);
 
         pstm.setString(1, name);
         pstm.setString(2, email);
