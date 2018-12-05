@@ -31,14 +31,10 @@ public class Solution {
     }
 
 
-    public String saveToDB(Connection conn) throws SQLException {
+    public void saveToDB(Connection conn) throws SQLException {
 
-        if (!isExercise(conn)) {
-            return "exercise";
-        }
-
-        if(!isUser(conn)){
-            return "user";
+        if(!isExercise(conn) || !isUser(conn)){
+            return ;
         }
 
         if(id == 0){
@@ -53,8 +49,6 @@ public class Solution {
             PreparedStatement updatePreparedStatement = prepareUpdate(conn);
             updatePreparedStatement.executeUpdate();
         }
-
-        return "0";
     }
 
     public static Solution loadSolutionById(Connection conn, int id) throws SQLException {
