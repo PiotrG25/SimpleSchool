@@ -1,10 +1,7 @@
 package classes;
 
-import servlets.user_group;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
